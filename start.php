@@ -1,16 +1,19 @@
 <?php
-// echo '正在计算....';
+if (php_uname('s')=='Windows NT') {
+    exec('chcp 65001');
+}
+echo "正在计算....".PHP_EOL;
 $ans=[3,0,1,2,3,3,2,3,0,0];
 $echoAns=['A','B','C','D'];
 $len = pow(4,10);
 for ($i=0; $i < $len; $i++) {
     $true =0;
     echo "正在计算：";
-    echo implode(',',$ans)."是否为正确答案\n\r";
+    echo implode(',',$ans)."是否为正确答案".PHP_EOL;
     for ($k=0; $k < 10; $k++) { 
         $result = call_user_func('q'.$k,$ans);
         if (!$result) {
-            echo "错在第".($k+1)."题\n\r";
+            echo "错在第".($k+1)."题".PHP_EOL;
             break;
         }else{
             $true++;
@@ -222,7 +225,7 @@ function isLeast($ans,$a)
 {
     $times = [0,0,0,0];
     foreach ($ans as $value) {
-        $times[$value-1]++;
+        $times[$value]++;
     }
     return $times[$a-1]<=$times[0] && $times[$a-1]<=$times[1] && $times[$a-1]<=$times[2] && $times[$a-1]<=$times[3];
 }
