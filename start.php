@@ -8,7 +8,6 @@ $echoAns=['A','B','C','D'];
 $len = pow(4,10);
 for ($i=0; $i < $len; $i++) {
     $true =0;
-   echo "正在计算：";
    echo implode(',',$ans)."是否为正确答案".PHP_EOL;
     for ($k=0; $k < 10; $k++) { 
         $result = call_user_func('q'.$k,$ans);
