@@ -1,26 +1,29 @@
 <?php
+$strTime = microtime(true);
 if (php_uname('s')=='Windows NT') {
    exec('chcp 65001');
 }
-echo "正在计算....".PHP_EOL;
+// echo "正在计算....".PHP_EOL;
 $ans=[0,0,0,0,0,0,0,0,0,0];
 $echoAns=['A','B','C','D'];
 $len = pow(4,10);
 for ($i=0; $i < $len; $i++) {
     $true =0;
-   echo implode(',',$ans)."是否为正确答案".PHP_EOL;
+//    echo implode(',',$ans)."是否为正确答案".PHP_EOL;
     for ($k=0; $k < 10; $k++) { 
         $result = call_user_func('q'.$k,$ans);
         if (!$result) {
-           echo "错在第".($k+1)."题".PHP_EOL;
+        //    echo "错在第".($k+1)."题".PHP_EOL;
             break;
         }else{
             $true++;
             if ($true == 10) {
-               echo "答案为：";
+            //    echo "答案为：";
+            $endTime = microtime(true)-$strTime;
                 foreach ($ans as $value) {
                     echo $echoAns[$value].',';
                 }
+                echo PHP_EOL.$endTime.'秒';
                 exit();
             }
         }
